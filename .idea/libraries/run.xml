@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="run">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/run/spigot-1.15.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/run/authlib-injector.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

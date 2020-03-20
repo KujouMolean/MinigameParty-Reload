@@ -1,0 +1,10 @@
+name: MinigamesParty-Reload
+main: com.molean.MinigamePartyReload.Main
+version: 0.1.0
+author: Molean
+softdepend: [Vault]
+api-version: 1.15
+commands:
+  minigame:
+    description: Main command
+    usage: /minigame [action]

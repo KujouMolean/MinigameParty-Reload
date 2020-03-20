@@ -1,0 +1,100 @@
+[18:09:00] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[18:09:00] [Server thread/INFO]: Loading properties
+[18:09:01] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-6de3d4b-fc24934 (MC: 1.15.2) (Implementing API version 1.15.2-R0.1-SNAPSHOT)
+[18:09:01] [Server thread/INFO]: Debug logging is disabled
+[18:09:01] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[18:09:01] [Server thread/INFO]: Using 4 threads for Netty based IO
+[18:09:01] [Server thread/INFO]: Default game type: SURVIVAL
+[18:09:01] [Server thread/INFO]: Generating keypair
+[18:09:02] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:09:02] [Server thread/INFO]: Using default channel type
+[18:09:04] [Server thread/INFO]: [Vault] Loading Vault v1.7.2-b107
+[18:09:04] [Server thread/INFO]: [Multiverse-Core] Loading Multiverse-Core v4.1.0-b775
+[18:09:04] [Server thread/INFO]: [MinigamesParty-Reload] Loading MinigamesParty-Reload v0.1.0
+[18:09:04] [Server thread/INFO]: [Vault] Enabling Vault v1.7.2-b107
+[18:09:04] [Server thread/INFO]: [Vault] [Permission] SuperPermissions loaded as backup permission system.
+[18:09:04] [Server thread/INFO]: [Vault] Enabled Version 1.7.2-b107
+[18:09:04] [Server thread/INFO]: Preparing level "world"
+[18:09:05] [Server thread/INFO]: Reloading ResourceManager: Default, bukkit
+[18:09:05] [Server thread/INFO]: Loaded 6 recipes
+[18:09:07] [Server thread/INFO]: -------- World Settings For [world] --------
+[18:09:07] [Server thread/INFO]: View Distance: 10
+[18:09:07] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[18:09:07] [Server thread/INFO]: Arrow Despawn Rate: 1200 Trident Respawn Rate:1200
+[18:09:07] [Server thread/INFO]: Item Despawn Rate: 6000
+[18:09:07] [Server thread/INFO]: Item Merge Radius: 2.5
+[18:09:07] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[18:09:07] [Server thread/INFO]: Mob Spawn Range: 6
+[18:09:07] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Cane Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Melon Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Beetroot Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Carrot Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Potato Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Vine Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Bamboo Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: SweetBerry Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Kelp Growth Modifier: 100%
+[18:09:07] [Server thread/INFO]: Experience Merge Radius: 3.0
+[18:09:07] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Ra 48 / Mi 16 / Tiv true
+[18:09:07] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[18:09:07] [Server thread/INFO]: Max TNT Explosions: 100
+[18:09:07] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[18:09:07] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[18:09:07] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[18:09:07] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313 Ocean: 14357621 Shipwreck: 165745295 Slime: 987234911
+[18:09:07] [Server thread/INFO]: Preparing start region for dimension 'world'/minecraft:overworld
+[18:09:08] [Server thread/INFO]: Preparing spawn area: 0%
+[18:09:08] [Server thread/INFO]: Preparing spawn area: 0%
+[18:09:08] [Server thread/INFO]: Preparing spawn area: 0%
+[18:09:09] [Server thread/INFO]: Preparing spawn area: 9%
+[18:09:09] [Server thread/INFO]: Time elapsed: 1751 ms
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] Enabling Multiverse-Core v4.1.0-b775
+[18:09:09] [Server thread/WARN]: [Multiverse-Core] Loaded class net.milkbowl.vault.economy.Economy from Vault v1.7.2-b107 which is not a depend, softdepend or loadbefore of this plugin.
+[18:09:09] [Server thread/WARN]: [Multiverse-Core] "Multiverse-Core v4.1.0-b775" has registered a listener for org.bukkit.event.entity.EntityCreatePortalEvent on method "public void com.onarandombox.MultiverseCore.listeners.MVPortalListener.entityPortalCreate(org.bukkit.event.entity.EntityCreatePortalEvent)", but the event is Deprecated. "Server performance will be affected"; please notify the authors [Rigby, fernferret, lithium3141, main--, dumptruckman].
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] We are aware of the warning about the deprecated event. There is no alternative that allows us to do what we need to do. The performance impact is negligible.
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] 0 - World(s) loaded.
+[18:09:09] [Server thread/WARN]: [Multiverse-Core] The world specified as the spawn world (world) did not exist!!
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] Version 4.1.0-b775 (API v24) Enabled - By Rigby, fernferret, lithium3141, main-- and dumptruckman
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] Help dumptruckman keep this project alive. Become a patron! https://www.patreon.com/dumptruckman
+[18:09:09] [Server thread/INFO]: [Multiverse-Core] One time donations are also appreciated: https://www.paypal.me/dumptruckman
+[18:09:09] [Server thread/INFO]: [MinigamesParty-Reload] Enabling MinigamesParty-Reload v0.1.0
+[18:09:09] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[18:09:09] [Server thread/INFO]: Done (4.681s)! For help, type "help"
+[18:09:09] [Craft Scheduler Thread - 1/INFO]: [Vault] Checking for Updates ... 
+[18:09:18] [Craft Scheduler Thread - 1/INFO]: [Vault] There was an issue attempting to check for the latest version.
+[18:09:18] [Craft Scheduler Thread - 1/INFO]: [Vault] No new version available
+[18:09:47] [User Authenticator #1/INFO]: UUID of player Molean is 0949958e-8e02-35f6-8ec5-faa1ae2a1c06
+[18:09:47] [Server thread/INFO]: Molean[/127.0.0.1:13222] logged in with entity id 205 at ([world]144.3885585054822, 156.0, 119.45182763207728)
+[18:09:57] [Server thread/INFO]: Molean issued server command: /minigame
+[18:10:04] [Server thread/INFO]: Molean issued server command: /minigame colormatch join
+[18:10:06] [Server thread/INFO]: Molean issued server command: /minigame colormatch start
+[18:10:12] [Server thread/INFO]: Molean issued server command: /minigame colormatch
+[18:10:16] [Craft Scheduler Thread - 0/INFO]: 人全部挂了,游戏结束
+[18:10:21] [Server thread/INFO]: Molean issued server command: /help
+[18:10:33] [Server thread/INFO]: Molean issued server command: /minigame left
+[18:10:41] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 7733ms or 154 ticks behind
+[18:10:45] [Async Chat Thread - #0/INFO]: <Molean> w
+[18:10:48] [Server thread/INFO]: Molean issued server command: /minigame
+[18:10:54] [Server thread/INFO]: Molean issued server command: /minigame join
+[18:10:59] [Server thread/INFO]: Molean issued server command: /minigame start
+[18:11:11] [Server thread/INFO]: Molean issued server command: /minigame left
+[18:11:14] [Server thread/INFO]: Molean issued server command: /minigame left
+[18:11:16] [Server thread/INFO]: Molean issued server command: /help
+[18:11:21] [Server thread/INFO]: Molean issued server command: /minigame colormatch join
+[18:11:23] [Server thread/INFO]: Molean issued server command: /minigame colormatch start
+[18:11:24] [Server thread/WARN]: Molean moved too quickly! -10.24392167168628,-2.3763776243062864,-14.950927743399973
+[18:11:54] [Craft Scheduler Thread - 1/INFO]: 时间到了
+[18:16:31] [Server thread/INFO]: Molean issued server command: /minigame colormatch start
+[18:16:36] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5336ms or 106 ticks behind
+[18:16:51] [Server thread/INFO]: Molean issued server command: /minigame left
+[18:17:00] [Server thread/INFO]: Molean issued server command: /minigame colormatch join
+[18:17:02] [Server thread/INFO]: Molean issued server command: /minigame colormatch start
+[18:17:25] [Craft Scheduler Thread - 4/INFO]: 人全部挂了,游戏结束
+[18:20:03] [Thread-3/INFO]: Stopping server
