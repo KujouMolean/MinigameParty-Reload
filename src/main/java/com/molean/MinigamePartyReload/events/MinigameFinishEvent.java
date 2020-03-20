@@ -3,8 +3,19 @@ package com.molean.MinigamePartyReload.events;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-abstract public class MinigameFinishEvent extends Event {
+public class MinigameFinishEvent extends Event {
     private static final HandlerList handlerList = new HandlerList();
+    Class minigame;
+
+    public MinigameFinishEvent(Class minigame,boolean isAsync) {
+        super(isAsync);
+        this.minigame = minigame;
+
+    }
+
+    public Class getMinigame() {
+        return minigame;
+    }
 
     @Override
     public HandlerList getHandlers() {

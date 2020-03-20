@@ -1,9 +1,8 @@
 package com.molean.MinigamePartyReload.minigame;
 
 import com.molean.MinigamePartyReload.Utils;
-import com.molean.MinigamePartyReload.events.ColorMatchFinishEvent;
+import com.molean.MinigamePartyReload.events.MinigameFinishEvent;
 import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,11 +12,7 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -27,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.function.BooleanSupplier;
 
 public class ColorMatch extends Minigame {
 
@@ -232,7 +226,8 @@ public class ColorMatch extends Minigame {
                         {
                             Utils.broadcast("人全部挂了,游戏结束");
                             inGame=false;
-                            Utils.getPluginManager().callEvent(new ColorMatchFinishEvent(true));
+                            Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(), true) {
+                            });
                             cancel();
                         }
                     }
@@ -248,7 +243,7 @@ public class ColorMatch extends Minigame {
                             new BukkitRunnable(){
                                 @Override
                                 public void run() {
-                                    Utils.getPluginManager().callEvent(new ColorMatchFinishEvent(true));
+                                    Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(),true));
                                 }
                             }.runTaskAsynchronously(Utils.getPlugin());
 

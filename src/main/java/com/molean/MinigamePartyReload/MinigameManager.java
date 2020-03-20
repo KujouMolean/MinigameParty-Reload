@@ -1,20 +1,17 @@
 package com.molean.MinigamePartyReload;
 
-import com.mojang.datafixers.TypeRewriteRule;
-import com.molean.MinigamePartyReload.Utils;
-import com.molean.MinigamePartyReload.events.ColorMatchSetupEvent;
+
 import com.molean.MinigamePartyReload.events.MinigameFinishEvent;
+import com.molean.MinigamePartyReload.events.MinigameSetupEvent;
 import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
 import com.molean.MinigamePartyReload.events.RoundStartEvent;
 import com.molean.MinigamePartyReload.minigame.ColorMatch;
 import com.molean.MinigamePartyReload.minigame.Minigame;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.ArrayList;
@@ -34,12 +31,10 @@ public class MinigameManager implements Listener {
         //todo
         //add all mini game here.
 
-        Collections.shuffle(minigames);
-
         for (Minigame minigame : minigames) {
             Utils.getServer().getPluginManager().registerEvents(minigame, Utils.getPlugin());
         }
-        nowGame = 0;
+
     }
 
     public boolean isPlayerIngame(Player player) {
@@ -49,18 +44,19 @@ public class MinigameManager implements Listener {
 
     @EventHandler
     public void onRoundStart(RoundStartEvent e) {
+        Collections.shuffle(minigames);
+        nowGame = 0;
         nextGame();
     }
 
     @EventHandler
-    public void onColorMatchSetup(ColorMatchSetupEvent e)
+    public void onMinigameSetup(MinigameSetupEvent e)
     {
         Utils.info("Setup color match..");
         for(Minigame minigame:minigames)
         {
-            if(minigame instanceof ColorMatch )
+            if(minigame.getClass().toString().equalsIgnoreCase( (e.getClass().toString()) ))
             {
-                Utils.info("Setup color match..");
                 minigame.setup(e.getLocation());
             }
         }
