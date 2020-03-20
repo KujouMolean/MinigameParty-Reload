@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MinigamesParty-Reload" />
+        <module name="MinigameParty-Reload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="MinigameParty-Reload" target="1.8" />
       <module name="MinigamesParty-Reload" target="1.8" />
     </bytecodeTargetLevel>
   </component>

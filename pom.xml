@@ -6,7 +6,7 @@
 
     <build>
         <defaultGoal>clean package install</defaultGoal>
-        <finalName>../run/plugins/MinigamesParty-reload-${project.version}</finalName>
+        <finalName>../run/plugins/MinigameParty-reload-${project.version}</finalName>
         <resources>
             <resource>
                 <targetPath>.</targetPath>

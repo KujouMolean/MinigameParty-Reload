@@ -142,11 +142,10 @@ public class ColorMatch extends Minigame {
         Utils.getConfig().set("ColorMatch.z", z);
         Utils.saveConfig();
 
-        x = Utils.getConfig().getInt("ColorMatch.x");
-        y = Utils.getConfig().getInt("ColorMatch.y");
-        z = Utils.getConfig().getInt("ColorMatch.z");
-        String worldName = Utils.getConfig().getString("ColorMatch.world");
-        world = Utils.getServer().getWorld(worldName);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.world = world;
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 Material wool = randomWool();

@@ -2,6 +2,7 @@ package com.molean.MinigamePartyReload;
 
 import com.mojang.datafixers.TypeRewriteRule;
 import com.molean.MinigamePartyReload.Utils;
+import com.molean.MinigamePartyReload.events.ColorMatchSetupEvent;
 import com.molean.MinigamePartyReload.events.MinigameFinishEvent;
 import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
 import com.molean.MinigamePartyReload.events.RoundStartEvent;
@@ -48,9 +49,23 @@ public class MinigameManager implements Listener {
 
     @EventHandler
     public void onRoundStart(RoundStartEvent e) {
-        prepare();
         nextGame();
     }
+
+    @EventHandler
+    public void onColorMatchSetup(ColorMatchSetupEvent e)
+    {
+        Utils.info("Setup color match..");
+        for(Minigame minigame:minigames)
+        {
+            if(minigame instanceof ColorMatch )
+            {
+                Utils.info("Setup color match..");
+                minigame.setup(e.getLocation());
+            }
+        }
+    }
+
 
     private void updatePlayer() {
         inGamePlayers.addAll(waitPlayers);

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3ee511fb-8a12-4ff7-a0d1-3ef3a94d1527" name="Default Changelist" comment="" />
+    <list default="true" id="3ee511fb-8a12-4ff7-a0d1-3ef3a94d1527" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/events/ColorMatchSetupEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinigameParty-Reload.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MinigameParty-Reload.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/MinigameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/MinigameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/MinigameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/MinigameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/minigame/ColorMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/minigame/ColorMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +29,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -22,6 +40,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1Z80SBCTsb9uMLwaUNalMKDai6j" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -30,7 +51,9 @@
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -45,7 +68,7 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/run/spigot-1.15.2.jar" />
       <option name="VM_PARAMETERS" value="-javaagent:authlib-injector.jar=https://skin.molean.com/api/yggdrasil " />
       <option name="PROGRAM_PARAMETERS" value="nogui" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Administrator\Documents\Develop\MinigamesParty-Reload\run" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Administrator\Documents\Develop\MinigameParty-Reload\run" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="compile package" />
@@ -68,11 +91,17 @@
       <workItem from="1584437547237" duration="25057000" />
       <workItem from="1584498898627" duration="13408000" />
       <workItem from="1584512698385" duration="14738000" />
+      <workItem from="1584707461963" duration="490000" />
+      <workItem from="1584708168358" duration="87000" />
+      <workItem from="1584709549656" duration="1448000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="74" key="#Auto_Import" timestamp="1584519313309">
@@ -87,14 +116,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="454" y="67" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1584512760298" />
-    <state x="178" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584512444332">
+    <state x="178" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584709720425">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1584512444332" />
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1584524407458">
+    <state x="178" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1584709720425" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1584710073124">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1584524407458" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1584710073124" />
     <state x="465" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584210883968">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -111,42 +140,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="388" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1584441404345" />
-    <state x="515" y="170" key="FileChooserDialogImpl" timestamp="1584438410321">
+    <state x="515" y="170" key="FileChooserDialogImpl" timestamp="1584709654117">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="515" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584438410321" />
-    <state width="1493" height="155" key="GridCell.Tab.0.bottom" timestamp="1584527543868">
+    <state x="515" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584709654117" />
+    <state width="1493" height="240" key="GridCell.Tab.0.bottom" timestamp="1584711006750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584527543868" />
-    <state width="1493" height="155" key="GridCell.Tab.0.center" timestamp="1584527543867">
+    <state width="1493" height="240" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584711006750" />
+    <state width="1493" height="240" key="GridCell.Tab.0.center" timestamp="1584711006750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584527543867" />
-    <state width="1493" height="155" key="GridCell.Tab.0.left" timestamp="1584527543867">
+    <state width="1493" height="240" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584711006750" />
+    <state width="1493" height="240" key="GridCell.Tab.0.left" timestamp="1584711006750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584527543867" />
-    <state width="1493" height="155" key="GridCell.Tab.0.right" timestamp="1584527543867">
+    <state width="1493" height="240" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584711006750" />
+    <state width="1493" height="240" key="GridCell.Tab.0.right" timestamp="1584711006750">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="155" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584527543867" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1584527543866">
+    <state width="1493" height="240" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584711006750" />
+    <state width="1493" height="240" key="GridCell.Tab.1.bottom" timestamp="1584711006634">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584527543866" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1584527543866">
+    <state width="1493" height="240" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584711006633" />
+    <state width="1493" height="240" key="GridCell.Tab.1.center" timestamp="1584711006633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584527543866" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1584527543866">
+    <state width="1493" height="240" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584711006633" />
+    <state width="1493" height="240" key="GridCell.Tab.1.left" timestamp="1584711006633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584527543866" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1584527543866">
+    <state width="1493" height="240" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584711006633" />
+    <state width="1493" height="240" key="GridCell.Tab.1.right" timestamp="1584711006633">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584527543866" />
+    <state width="1493" height="240" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584711006633" />
     <state x="349" y="158" key="IDE.errors.dialog" timestamp="1584506441203">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -155,18 +184,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="293" y="73" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1584442145449" />
+    <state x="815" y="150" width="721" height="592" key="NewModule_or_Project.wizard" timestamp="1584708190277">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="815" y="150" width="721" height="592" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1584708190277" />
     <state x="222" y="115" width="1241" height="709" key="SettingsEditor" timestamp="1584515211878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="222" y="115" width="1241" height="709" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584515211878" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1584516834265">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1584710317217">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1584516834265" />
-    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1584512698736">
+    <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1584710317217" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1584709553167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584512698736" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584709553167" />
     <state x="323" y="151" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584526085574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -194,8 +227,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/MinigameManager.java</url>
-          <line>107</line>
+          <line>122</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/molean/MinigamePartyReload/minigame/ColorMatch.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

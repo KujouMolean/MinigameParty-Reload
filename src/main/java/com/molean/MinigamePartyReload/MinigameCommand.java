@@ -1,21 +1,17 @@
 package com.molean.MinigamePartyReload;
 
-import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
-import com.molean.MinigamePartyReload.events.RoundStartEvent;
-import com.molean.MinigamePartyReload.minigame.ColorMatch;
+import com.molean.MinigamePartyReload.events.ColorMatchSetupEvent;
 
-import org.bukkit.Location;
+import com.molean.MinigamePartyReload.events.RoundStartEvent;
+
 import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
+
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MinigameCommand implements CommandExecutor {
@@ -59,8 +55,10 @@ public class MinigameCommand implements CommandExecutor {
                     Player player = Utils.getPlayer(commandSender.getName());
                     Utils.getMinigameManager().addPlayer(player);
                 }
-                if(strings[1].equalsIgnoreCase("init"))
+                if(strings[1].equalsIgnoreCase("setup"))
                 {
+                    Utils.info("get command setup");
+                    Utils.getPluginManager().callEvent(new ColorMatchSetupEvent(Utils.getPlayer(commandSender.getName()).getLocation()));
                 }
             }
         }

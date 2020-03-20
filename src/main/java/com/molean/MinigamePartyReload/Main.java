@@ -19,7 +19,7 @@ public class Main extends JavaPlugin implements Listener {
         config = getConfig();
         minigameManager = new MinigameManager();
 
-
+        minigameManager.prepare();
         //config
         initConfig();
 
