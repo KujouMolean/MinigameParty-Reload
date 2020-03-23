@@ -9,9 +9,8 @@ import java.util.List;
 public class ChickenTag extends Minigame {
     @Override
     public void init(List<Player> players) {
-
+        players.get(1).setGlowing(true);
     }
-
     @Override
     public void start() {
 

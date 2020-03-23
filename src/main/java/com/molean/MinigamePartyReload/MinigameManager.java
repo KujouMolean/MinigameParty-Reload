@@ -7,12 +7,14 @@ import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
 import com.molean.MinigamePartyReload.events.RoundStartEvent;
 import com.molean.MinigamePartyReload.minigame.ColorMatch;
 import com.molean.MinigamePartyReload.minigame.Minigame;
+import com.molean.MinigamePartyReload.minigame.Spleef;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +29,7 @@ public class MinigameManager implements Listener {
 
     public void prepare() {
         minigames.add(new ColorMatch());
+        minigames.add(new Spleef());
 
         //todo
         //add all mini game here.
@@ -69,17 +72,27 @@ public class MinigameManager implements Listener {
     }
 
     private void nextGame() {
+        Utils.broadcast("nextgame:"+nowGame);
         if (nowGame < minigames.size()) {
             updatePlayer();
             if (inGamePlayers.size() > 0) {
                 List<Player> tempPlayers = new ArrayList<>();
                 tempPlayers.addAll(inGamePlayers);
-                minigames.get(nowGame).init(tempPlayers);
-                minigames.get(nowGame).start();
+                Utils.broadcast("一个游戏游戏开始了");
+                new BukkitRunnable()
+                {
+                    @Override
+                    public void run() {
+                        Utils.broadcast("Now games:"+nowGame);
+                        minigames.get(nowGame).init(tempPlayers);
+                        minigames.get(nowGame).start();
+                        nowGame++;
+                    }
+                }.runTask(Utils.getPlugin());
+
             } else {
                 Utils.broadcast("没有玩家在游戏中,游戏停止.");
             }
-            nowGame++;
         } else {
             Utils.broadcast("游戏全部结束");
         }

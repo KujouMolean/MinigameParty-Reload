@@ -5,6 +5,7 @@ import com.molean.MinigamePartyReload.events.MinigameSetupEvent;
 import com.molean.MinigamePartyReload.events.RoundStartEvent;
 
 import com.molean.MinigamePartyReload.minigame.ColorMatch;
+import com.molean.MinigamePartyReload.minigame.Spleef;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 
@@ -42,27 +43,32 @@ public class MinigameCommand implements CommandExecutor {
                     Utils.setBarAutoProgress(bossBar,Integer.parseInt(strings[2]),()->{bossBar.setVisible(false);});
                 }
             }
+            if(strings[0].equalsIgnoreCase("start"))
+            {
+                commandSender.sendMessage("准备开始游戏");
+                Utils.getPluginManager().callEvent(new RoundStartEvent());
+            }
+            if(strings[0].equalsIgnoreCase("join"))
+            {
+                Player player = Utils.getPlayer(commandSender.getName());
+                Utils.getMinigameManager().addPlayer(player);
+            }
             if(strings[0].equalsIgnoreCase("colormatch"))
             {
-                if(strings.length==1)
-                {
-                    commandSender.sendMessage("参数不足");
-                    return false;
-                }
-                if(strings[1].equalsIgnoreCase("start"))
-                {
-                    Utils.getPluginManager().callEvent(new RoundStartEvent());
-                }
-                if(strings[1].equalsIgnoreCase("join"))
-                {
-                    Player player = Utils.getPlayer(commandSender.getName());
-                    Utils.getMinigameManager().addPlayer(player);
-                }
                 if(strings[1].equalsIgnoreCase("setup"))
                 {
-                    Utils.info("get command setup");
+                    Utils.broadcast("已为服务器添加任务.");
                     Utils.getPluginManager().callEvent(new MinigameSetupEvent(Utils.getPlayer(commandSender.getName()).getLocation(), ColorMatch.class) {
                     });
+                }
+            }
+            if(strings[0].equalsIgnoreCase("spleef"))
+            {
+                if(strings[1].equalsIgnoreCase("setup"))
+                {
+                    Utils.broadcast("已为服务器添加任务");
+                    Utils.getPluginManager().callEvent(new MinigameSetupEvent(Utils.getPlayer(commandSender.getName()).getLocation()
+                            , Spleef.class));
                 }
             }
         }
