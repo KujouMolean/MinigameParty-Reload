@@ -55,7 +55,7 @@ public class MinigameManager implements Listener {
         Utils.info("Setup color match..");
         for(Minigame minigame:minigames)
         {
-            if(minigame.getClass().toString().equalsIgnoreCase( (e.getClass().toString()) ))
+            if(minigame.getClass().toString().equalsIgnoreCase( (e.getMinigame().toString()) ))
             {
                 minigame.setup(e.getLocation());
             }
