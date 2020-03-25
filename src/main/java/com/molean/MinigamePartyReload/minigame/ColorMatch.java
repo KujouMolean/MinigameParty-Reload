@@ -1,8 +1,10 @@
 package com.molean.MinigamePartyReload.minigame;
 
+import com.molean.MinigamePartyReload.RankList;
 import com.molean.MinigamePartyReload.Utils;
 import com.molean.MinigamePartyReload.events.MinigameFinishEvent;
 import com.molean.MinigamePartyReload.events.PlayerLeaveMinigame;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -30,43 +32,96 @@ public class ColorMatch extends Minigame {
     private World world;
     private boolean inGame;
     List<Player> players = new ArrayList<>();
-    List<Player> suspectors = new ArrayList<>();
+    List<Player> spectators = new ArrayList<>();
     Material[][] structureData = new Material[16][16];
-    Player winner;
-
-
+    RankList rankList = new RankList();
 
     @EventHandler
-    public void onPlace(BlockPlaceEvent e)
-    {
-        if(players.contains(e.getPlayer())||suspectors.contains(e.getPlayer()))
+    public void onMinigameFinish(MinigameFinishEvent e) {
+        if (e.getMinigame().getName().contains(this.getClass().getName())) {
+            for (Player player : spectators) {
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            player.setGameMode(GameMode.SURVIVAL);
+                        }
+                    }.runTask(Utils.getPlugin());
+            }
+            spectators.clear();
+        }
+    }
+
+    @EventHandler
+    public void onPlace(BlockPlaceEvent e) {
+        if (players.contains(e.getPlayer()) || spectators.contains(e.getPlayer()))
             e.setCancelled(true);
     }
+
     @EventHandler
-    public void onPlayerLeftGame(PlayerLeaveMinigame e)
-    {
+    public void onPlayerLeftGame(PlayerLeaveMinigame e) {
         players.remove(e);
-        suspectors.remove(e);
+        spectators.remove(e);
+        //todo
     }
+
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) {
-        if(!inGame)
+    void onPlayerMove(PlayerMoveEvent e){
+        if (!inGame)
             return;
         Player player = e.getPlayer();
-        if (!players.contains(player))
-            return;
-        Location location = player.getLocation();
-        if (!location.getWorld().getName().equals(world.getName()) ||
-                location.getBlockX() < x ||
-                location.getBlockZ() < z ||
-                location.getBlockX() > x + 64 ||
-                location.getBlockZ() > z + 64 ||
-                location.getBlockY() > y + 10 ||
-                location.getBlockY() < y - 3) {
-            player.sendTitle("失败","你的游戏结束了",0,100,0);
-            players.remove(player);
-            suspectors.add(player);
+        if (players.contains(player)) {
+            Location location = player.getLocation();
+            if (!location.getWorld().getName().equals(world.getName()) ||
+                    location.getBlockX() < x ||
+                    location.getBlockZ() < z ||
+                    location.getBlockX() > x + 63 ||
+                    location.getBlockZ() > z + 63 ||
+                    location.getBlockY() > y + 10 ||
+                    location.getBlockY() < y ) {
+                player.sendTitle("失败", "你的游戏结束了", 0, 100, 0);
+                addToSpectator(player);
+
+                rankList.addFirst(player);
+                rankList.setHasWinner(true);
+            }
+        } else if (spectators.contains(player)) {
+            Location location = player.getLocation();
+            if (location.getBlockY() > y + 63) {
+                location.setY(y+62);
+                player.teleport(location);
+            }
+            else if (location.getBlockY() < y) {
+                location.setY(y+1);
+                player.teleport(location);
+            }
+            else if (location.getBlockX() < x) {
+                location.setX(x+1);
+                player.teleport(location);
+            }
+            else if (location.getBlockX() > x + 63) {
+                location.setX(x+62);
+                player.teleport(location);
+            }
+            else if (location.getBlockZ() < z) {
+                location.setZ(z+1);
+                player.teleport(location);
+            }
+            else if (location.getBlockZ() > z + 63) {
+                location.setZ(z+62);
+                player.teleport(location);
+            }
+
         }
+    }
+
+    private void addToSpectator(Player player) {
+        if (players.contains(player)) {
+            players.remove(player);
+            spectators.add(player);
+            player.setGameMode(GameMode.SPECTATOR);
+            player.teleport(getSafeLanding());
+        }
+
     }
 
     static ArrayList<Material> wools = new ArrayList<Material>(
@@ -88,12 +143,13 @@ public class ColorMatch extends Minigame {
 
     public void init(List<Player> players) {
 
+        rankList.clear();
 
         if (!Utils.getConfig().getBoolean("ColorMatch.hasGenerated")) {
             return;
         }
 
-        this.players=players;
+        this.players = players;
 
         x = Utils.getConfig().getInt("ColorMatch.x");
         y = Utils.getConfig().getInt("ColorMatch.y");
@@ -108,8 +164,8 @@ public class ColorMatch extends Minigame {
             }
         }
 
-        for(Player player:players)
-        {
+        for (Player player : players) {
+            player.setGameMode(GameMode.ADVENTURE);
             player.teleport(getSafeLanding());
         }
     }
@@ -129,12 +185,7 @@ public class ColorMatch extends Minigame {
     }
 
     public void setup(World world, int x, int y, int z) {
-        Utils.getConfig().set("ColorMatch.hasGenerated", true);
-        Utils.getConfig().set("ColorMatch.world", world.getName());
-        Utils.getConfig().set("ColorMatch.x", x);
-        Utils.getConfig().set("ColorMatch.y", y);
-        Utils.getConfig().set("ColorMatch.z", z);
-        Utils.saveConfig();
+
 
         this.x = x;
         this.y = y;
@@ -149,12 +200,14 @@ public class ColorMatch extends Minigame {
         }
 
     }
+
     public void setup(Location location) {
-        setup(location.getWorld(),location.getBlockX(),location.getBlockY(),location.getBlockZ());
+        setup(location.getWorld(), location.getBlockX(), location.getBlockY(), location.getBlockZ());
 
     }
+
     public Location getSafeLanding() {
-        return new Location(world, x + r.nextInt(64), y + 2, z + r.nextInt(64));
+        return new Location(world, x + r.nextInt(64), y + 3, z + r.nextInt(64));
     }
 
     public void trimUnit(Material wool) {
@@ -177,7 +230,7 @@ public class ColorMatch extends Minigame {
     }
 
     public void start() {
-        inGame=true;
+        inGame = true;
         Utils.runTaskAsynchronously(new BukkitRunnable() {
             @Override
             public void run() {
@@ -189,13 +242,19 @@ public class ColorMatch extends Minigame {
                         }
                     }
                 });
-                BukkitTask bukkitTask=new BukkitRunnable() {
+                BukkitTask bukkitTask = new BukkitRunnable() {
 
                     @Override
                     public void run() {
-
+                        if (players.size() == 0) {
+                            Utils.broadcast("人全部挂了,游戏结束");
+                            inGame = false;
+                            Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(), rankList, true) {
+                            });
+                            cancel();
+                        }
                         final Material wool = randomWool();
-                        BossBar bossBar = Utils.createBar("站在与物品栏相应颜色的羊毛上",BarColor.BLUE,BarStyle.SOLID);
+                        BossBar bossBar = Utils.createBar("站在与物品栏相应颜色的羊毛上", BarColor.BLUE, BarStyle.SOLID);
                         for (Player player : players) {
 
                             player.getInventory().clear();
@@ -204,49 +263,42 @@ public class ColorMatch extends Minigame {
                             }
                             bossBar.addPlayer(player);
                         }
-                        Utils.setBarAutoProgress(bossBar,80,()->{bossBar.removeAll();});
+                        Utils.setBarAutoProgress(bossBar, 80, () -> {
+                            bossBar.removeAll();
+                        });
 
                         Utils.runTaskLater(new BukkitRunnable() {
                             @Override
                             public void run() {
-                                trimUnit(wool);
+                                if (inGame)
+                                    trimUnit(wool);
                             }
                         }, 80l);
                         Utils.runTaskLater(new BukkitRunnable() {
                             @Override
                             public void run() {
-                                recoveryAllUnit();
+                                if (inGame)
+                                    recoveryAllUnit();
                             }
                         }, 150l);
-                        if(players.size()==1)
-                        {
-                            winner = players.get(0);
-                        }
-                        if (players.size() == 0)
-                        {
-                            Utils.broadcast("人全部挂了,游戏结束");
-                            inGame=false;
-                            Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(), true) {
-                            });
-                            cancel();
-                        }
+
                     }
-                }.runTaskTimerAsynchronously(Utils.getPlugin(),20,150);
+                }.runTaskTimerAsynchronously(Utils.getPlugin(), 20, 150);
                 Utils.runTaskLaterAsynchronously(new BukkitRunnable() {
                     @Override
                     public void run() {
-                        if(!bukkitTask.isCancelled())
-                        {
+                        if (!bukkitTask.isCancelled()) {
                             Utils.broadcast("时间到了");
-                            inGame=false;
+                            inGame = false;
                             bukkitTask.cancel();
-                            new BukkitRunnable(){
+                            new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(),true));
+                                    if (inGame)
+                                        recoveryAllUnit();
                                 }
-                            }.runTaskAsynchronously(Utils.getPlugin());
-
+                            }.runTask(Utils.getPlugin());
+                            Utils.getPluginManager().callEvent(new MinigameFinishEvent(this.getClass(), rankList, true));
                         }
                     }
                 }, 600l);
