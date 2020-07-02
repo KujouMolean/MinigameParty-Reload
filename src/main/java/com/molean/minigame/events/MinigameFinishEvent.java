@@ -1,24 +1,17 @@
-package com.molean.MinigamePartyReload.events;
+package com.molean.minigame.events;
 
-import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class MinigameSetupEvent extends Event {
+public class MinigameFinishEvent extends Event {
     private static final HandlerList handlerList = new HandlerList();
-    Location location;
-    Class minigame;
-    public MinigameSetupEvent(Location location,Class minigame)
-    {
-        this.location = location;
+    private final String minigame;
+
+    public MinigameFinishEvent(String minigame) {
         this.minigame = minigame;
     }
-    public Location getLocation()
-    {
-        return location;
-    }
 
-    public Class getMinigame() {
+    public String getMinigame() {
         return minigame;
     }
 
@@ -26,7 +19,9 @@ public class MinigameSetupEvent extends Event {
     public HandlerList getHandlers() {
         return handlerList;
     }
+
     public static HandlerList getHandlerList() {
         return handlerList;
     }
+
 }

@@ -1,5 +1,5 @@
-name: MinigamesParty-Reload
-main: com.molean.MinigamePartyReload.Main
+name: Minigame
+main: com.molean.minigame.Main
 version: 0.1.0
 author: Molean
 softdepend: [Vault]
