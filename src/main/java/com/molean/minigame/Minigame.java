@@ -158,7 +158,7 @@ public abstract class Minigame implements Listener {
         return playerList;
     }
 
-    private Location pos1, pos2;
+    protected Location pos1, pos2;
 
     public void setRestrict(Location pos1, Location pos2) {
         if (!pos1.getWorld().equals(pos2.getWorld())) {

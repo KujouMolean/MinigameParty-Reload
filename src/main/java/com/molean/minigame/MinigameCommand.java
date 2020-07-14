@@ -1,13 +1,7 @@
 package com.molean.minigame;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +30,18 @@ public class MinigameCommand implements CommandExecutor, TabCompleter {
                 try {
                     Class<?> aClass = Class.forName("com.molean.minigame.minigame." + strings[1]);
                     Minigame minigame = ((Minigame) aClass.newInstance());
-                    minigame.setup(player.getWorld(),
-                            player.getLocation().getBlockX(),
-                            player.getLocation().getBlockY(),
-                            player.getLocation().getBlockZ());
+                    if (strings.length - 2 >= 3){
+                        minigame.setup(player.getWorld(),
+                                Integer.parseInt(strings[2]),
+                                Integer.parseInt(strings[3]),
+                                Integer.parseInt(strings[4]));
+                    }else{
+                        minigame.setup(player.getWorld(),
+                                player.getLocation().getBlockX(),
+                                player.getLocation().getBlockY(),
+                                player.getLocation().getBlockZ());
+                    }
+
                 } catch (ClassNotFoundException e) {
                     player.sendMessage(getMessage("General.GameDoesNotExsit"));
                 } catch (IllegalAccessException | InstantiationException e) {
@@ -54,13 +56,6 @@ public class MinigameCommand implements CommandExecutor, TabCompleter {
                 MinigameManager.getInstance().left(player);
                 break;
             case "debug":
-                Scoreboard newScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-                Objective objective = newScoreboard.registerNewObjective("SheepFreezy", "dummy", "");
-                objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-                objective.setDisplayName(ChatColor.RED + "YourScoreboardTitle");
-                Score score = objective.getScore(player.getName());
-                score.setScore(10);
-                player.setScoreboard(newScoreboard);
                 break;
         }
         return true;

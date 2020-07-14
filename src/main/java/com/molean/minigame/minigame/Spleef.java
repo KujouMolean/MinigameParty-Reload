@@ -59,7 +59,7 @@ public class Spleef extends Minigame {
     public void start() {
         super.start();
         Utils.runTaskAsynchronously(() -> {
-            for (int i = 0; inGame; i++) {
+            for (int i = 0; inGame && i < 300; i++) {
                 if (getPlayerList().size() == 1) {
                     rankList.addFirst(getPlayerList().get(0));
                     stop();
@@ -80,8 +80,8 @@ public class Spleef extends Minigame {
 
     @Override
     public boolean canDamage(Player player, EntityDamageEvent.DamageCause damageCause) {
-        if(damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE))
+        if (damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE))
             return true;
-        else return super.canDamage(player,damageCause);
+        else return super.canDamage(player, damageCause);
     }
 }

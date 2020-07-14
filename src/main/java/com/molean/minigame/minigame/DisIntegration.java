@@ -39,7 +39,7 @@ public class DisIntegration extends Minigame {
                 block.setType(Material.WHITE_WOOL);
             }
         }
-        setRestrict(new Location(world, x-1, y - 1, z-1), new Location(world, x + 65, y + 65, z + 65));
+        setRestrict(new Location(world, x - 1, y - 1, z - 1), new Location(world, x + 65, y + 65, z + 65));
     }
 
     /**
@@ -49,12 +49,12 @@ public class DisIntegration extends Minigame {
     public void start() {
         super.start();
         Utils.runTaskAsynchronously(() -> {
-            for (int i = 0; inGame; i++) {
+            for (int i = 0; inGame && i < 150; i++) {
                 Utils.delay(40L);
                 Utils.runTask(() -> {
                     for (int j = 0; j < 64; j++) {
                         for (int k = 0; k < 64; k++) {
-                            if (r.nextBoolean()&&r.nextBoolean()) {
+                            if (r.nextBoolean() && r.nextBoolean()) {
                                 Block block = world.getBlockAt(x + j, y, z + k);
                                 switch (block.getType()) {
                                     case WHITE_WOOL:

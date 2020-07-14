@@ -15,6 +15,7 @@ import java.util.Random;
 
 public class LastArcherStanding extends Minigame {
     final private Random r = new Random();
+
     public LastArcherStanding() {
         super("LastArcherStanding");
     }
@@ -34,14 +35,14 @@ public class LastArcherStanding extends Minigame {
     public void init(List<Player> players) {
         super.init(players);
         for (Player player : players) {
-            player.getInventory().addItem(new ItemStack(Material.ARROW,16));
+            player.getInventory().addItem(new ItemStack(Material.ARROW, 16));
             player.getInventory().addItem(new ItemStack(Material.BOW));
         }
     }
 
     @Override
     public boolean canDamage(Player player, EntityDamageEvent.DamageCause damageCause) {
-        if(damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE)){
+        if (damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
             setMiniGameMode(player, MiniGameMode.spectator);
             rankList.addFirst(player);
         }
@@ -53,7 +54,7 @@ public class LastArcherStanding extends Minigame {
     public void start() {
         super.start();
         Utils.runTaskAsynchronously(() -> {
-            for (int i = 0; inGame; i++) {
+            for (int i = 0; inGame && i < 300; i++) {
                 if (getPlayerList().size() == 1) {
                     rankList.addFirst(getPlayerList().get(0));
                     stop();

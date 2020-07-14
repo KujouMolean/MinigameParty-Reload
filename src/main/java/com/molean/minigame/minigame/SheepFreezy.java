@@ -111,6 +111,4 @@ public class SheepFreezy extends Minigame {
         }
         return score;
     }
-
-
 }
