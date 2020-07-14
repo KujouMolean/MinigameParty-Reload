@@ -11,17 +11,23 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockCanBuildEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.*;
 
-import static com.molean.minigame.Utils.getMessage;
-import static com.molean.minigame.Utils.inBox;
+import static com.molean.minigame.Utils.*;
 
 public abstract class Minigame implements Listener {
     private final String name;
@@ -58,6 +64,10 @@ public abstract class Minigame implements Listener {
         ConfigUtils.getConfig("config.yml").set(name + ".z", z);
         ConfigUtils.getConfig("config.yml").set(name + ".world", world.getName());
         ConfigUtils.saveConfig("config.yml");
+        this.world = world;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public void init(List<Player> players) {
@@ -75,8 +85,8 @@ public abstract class Minigame implements Listener {
             playerLocationMap.put(player, player.getLocation());
             playerInventory.put(player, player.getInventory().getContents());
             Utils.info(player.getName() + " inventory: " + Arrays.toString(player.getInventory().getContents()));
+            player.getInventory().clear();
             setMiniGameMode(player, MiniGameMode.gaming);
-
         }
     }
 
@@ -84,6 +94,21 @@ public abstract class Minigame implements Listener {
         inGame = true;
     }
 
+    public void setSoreborad(String title, Map<String, Integer> map) {
+        runTask(() -> {
+            Scoreboard newScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+            Objective objective = newScoreboard.registerNewObjective(name, "dummy", title);
+            objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+            map.forEach((entry, value) -> {
+                Score score = objective.getScore(entry);
+                score.setScore(value);
+            });
+            for (Player player : players.keySet()) {
+                player.setScoreboard(newScoreboard);
+            }
+        });
+
+    }
 
     public abstract Location getSafeLanding();
 
@@ -91,14 +116,12 @@ public abstract class Minigame implements Listener {
         players.put(player, miniGameMode);
         if (miniGameMode.equals(MiniGameMode.spectator)) {
             player.setGameMode(GameMode.SPECTATOR);
-            rankList.addFirst(player);
         }
         if (miniGameMode.equals(MiniGameMode.gaming)) {
             player.setGameMode(GameMode.SURVIVAL);
             player.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
             player.setFoodLevel(20);
         }
-        player.getInventory().clear();
         player.teleport(getSafeLanding());
     }
 
@@ -115,12 +138,15 @@ public abstract class Minigame implements Listener {
             Bukkit.broadcastMessage(rankList.toString());
         });
     }
+
     public void quit(Player player) {
         player.getInventory().clear();
         player.setGameMode(GameMode.SURVIVAL);
         player.teleport(playerLocationMap.get(player));
         players.remove(player);
         player.getInventory().setContents(playerInventory.get(player));
+        Scoreboard newScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        player.setScoreboard(newScoreboard);
     }
 
     public List<Player> getPlayerList() {
@@ -131,9 +157,6 @@ public abstract class Minigame implements Listener {
         });
         return playerList;
     }
-
-
-
 
     private Location pos1, pos2;
 
@@ -163,6 +186,9 @@ public abstract class Minigame implements Listener {
         return false;
     }
 
+    public boolean canDamage(Player player, EntityDamageEvent.DamageCause damageCause) {
+        return false;
+    }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
@@ -176,6 +202,7 @@ public abstract class Minigame implements Listener {
                         player.teleport(getSafeLanding());
                     } else {
                         setMiniGameMode(player, MiniGameMode.spectator);
+                        rankList.addFirst(player);
                     }
                 } else if (players.get(player).equals(MiniGameMode.spectator)) {
                     Location location = Utils.recentInBox(pos1, pos2, player.getLocation());
@@ -186,10 +213,18 @@ public abstract class Minigame implements Listener {
     }
 
     @EventHandler
-    public void onPlace(BlockCanBuildEvent e) {
-        if (players.containsKey(e.getPlayer())) {
-            if (!canBuild(e.getPlayer(), e.getBlock().getLocation()))
-                e.setBuildable(false);
+    public void onPlace(BlockPlaceEvent event) {
+        if (players.containsKey(event.getPlayer())) {
+            if (!canBuild(event.getPlayer(), event.getBlock().getLocation()))
+                event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event){
+        if (players.containsKey(event.getPlayer())) {
+            if (!canBuild(event.getPlayer(), event.getBlock().getLocation()))
+                event.setCancelled(true);
         }
     }
 
@@ -214,7 +249,22 @@ public abstract class Minigame implements Listener {
     @EventHandler
     public void onPlayerDie(PlayerDeathEvent event) {
         if (players.containsKey(event.getEntity())) {
-            setMiniGameMode(event.getEntity(), MiniGameMode.spectator);
+            if (!canRebornIfOut(event.getEntity())) {
+                setMiniGameMode(event.getEntity(), MiniGameMode.spectator);
+                rankList.addFirst(event.getEntity());
+            }
+
         }
+    }
+
+    @EventHandler
+    public void onPlayerDamaged(EntityDamageEvent event){
+        if(!(event.getEntity() instanceof  Player))
+            return;
+        Player player = (Player) event.getEntity();
+        if(!players.containsKey(player))
+            return;
+        if(!canDamage(player, event.getCause()))
+            event.setCancelled(true);
     }
 }

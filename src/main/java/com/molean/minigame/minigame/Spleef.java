@@ -6,8 +6,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -45,11 +45,10 @@ public class Spleef extends Minigame {
 
         for (Player player : players) {
             ItemStack diamondShovel = new ItemStack(Material.DIAMOND_SHOVEL);
-            diamondShovel.addEnchantment(Enchantment.DIG_SPEED, 5);
             player.getInventory().addItem(diamondShovel);
         }
 
-        setRestrict(new Location(world, x, y - 1, z), new Location(world, x + 64, y + 10, z + 64));
+        setRestrict(new Location(world, x - 1, y - 1, z - 1), new Location(world, x + 65, y + 65, z + 65));
     }
 
     public Location getSafeLanding() {
@@ -60,12 +59,12 @@ public class Spleef extends Minigame {
     public void start() {
         super.start();
         Utils.runTaskAsynchronously(() -> {
-            for(int i=0;inGame;i++){
-                if(getPlayerList().size()==1){
+            for (int i = 0; inGame; i++) {
+                if (getPlayerList().size() == 1) {
                     rankList.addFirst(getPlayerList().get(0));
                     stop();
                 }
-                if(getPlayerList().size()==0){
+                if (getPlayerList().size() == 0) {
                     stop();
                 }
                 Utils.delay(20L);
@@ -77,5 +76,12 @@ public class Spleef extends Minigame {
     @Override
     public boolean canBuild(Player player, Location location) {
         return Utils.inBox(new Location(world, x, y, z), new Location(world, x + 64, y, z + 64), location);
+    }
+
+    @Override
+    public boolean canDamage(Player player, EntityDamageEvent.DamageCause damageCause) {
+        if(damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE))
+            return true;
+        else return super.canDamage(player,damageCause);
     }
 }

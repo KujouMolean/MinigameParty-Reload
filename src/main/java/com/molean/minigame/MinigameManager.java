@@ -33,8 +33,6 @@ public class MinigameManager implements Listener {
             player.sendMessage(getMessage("General.AlreadyHasGame"));
             return;
         }
-        ArrayList<Material> materials = new ArrayList<>();
-        materials.add(Material.CLOCK);
         if (!InventoryUtils.hasItem(player.getInventory(), Material.BLAZE_POWDER, 16)) {
             player.sendMessage(getMessage("General.NoEnoughMaterial"));
             return;

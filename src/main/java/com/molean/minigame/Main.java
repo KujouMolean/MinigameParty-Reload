@@ -2,7 +2,6 @@ package com.molean.minigame;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import sun.security.krb5.Config;
 
 import java.util.Objects;
 
@@ -27,7 +26,7 @@ public class Main extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("minigame")).setExecutor(new MinigameCommand());
         Objects.requireNonNull(getCommand("minigame")).setTabCompleter(new MinigameCommand());
 
-        getServer().getPluginManager().registerEvents(MinigameManager.getInstance(),this);
+        getServer().getPluginManager().registerEvents(MinigameManager.getInstance(), this);
 
     }
 
@@ -35,7 +34,6 @@ public class Main extends JavaPlugin implements Listener {
     public void onDisable() {
         Utils.saveConfig();
     }
-
 
 
 }

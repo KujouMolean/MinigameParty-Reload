@@ -14,10 +14,7 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class ColorMatch extends Minigame {
     /**
@@ -65,7 +62,7 @@ public class ColorMatch extends Minigame {
     public void init(List<Player> playerss) {
         super.init(playerss);
 
-        setRestrict(new Location(world, x, y - 1, z), new Location(world, x + 64, y + 10, z + 64));
+        setRestrict(new Location(world, x - 1, y - 1, z - 1), new Location(world, x + 65, y + 65, z + 65));
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 Material wool = randomWool();
@@ -85,6 +82,10 @@ public class ColorMatch extends Minigame {
         Utils.runTaskAsynchronously(() -> {
             Utils.delay(100L);
             for (int r = 0; isInGame() && r < 40; r++) {
+                Map<String, Integer> map = new HashMap<>();
+                map.put("Round Left", 40 - r);
+                setSoreborad(getName(), map);
+
                 final Material wool = randomWool();
                 BossBar bossBar = Utils.createBar("站在与物品栏相应颜色的羊毛上", BarColor.BLUE, BarStyle.SOLID);
                 for (Player player : getPlayerList()) {
@@ -99,7 +100,7 @@ public class ColorMatch extends Minigame {
                 trimUnit(wool);
                 Utils.delay(40L);
                 recoveryAllUnit();
-                if (getPlayerList().size() == 0){
+                if (getPlayerList().size() == 0) {
                     rankList.setHasWinner(true);
                     break;
                 }

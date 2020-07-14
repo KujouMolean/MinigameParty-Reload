@@ -1,12 +1,18 @@
 package com.molean.minigame;
 
-import com.molean.minigame.minigame.ColorMatch;
-import com.molean.minigame.minigame.Spleef;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.molean.minigame.Utils.getMessage;
 
 
 public class MinigameCommand implements CommandExecutor, TabCompleter {
@@ -27,16 +33,18 @@ public class MinigameCommand implements CommandExecutor, TabCompleter {
                 MinigameManager.getInstance().start(strings[1], player);
                 break;
             case "setup":
-                if(strings[1].equalsIgnoreCase("colormatch")){
-                    new ColorMatch().setup(player.getWorld(),
+                try {
+                    Class<?> aClass = Class.forName("com.molean.minigame.minigame." + strings[1]);
+                    Minigame minigame = ((Minigame) aClass.newInstance());
+                    minigame.setup(player.getWorld(),
                             player.getLocation().getBlockX(),
                             player.getLocation().getBlockY(),
                             player.getLocation().getBlockZ());
-                }else if(strings[1].equalsIgnoreCase("spleef")){
-                    new Spleef().setup(player.getWorld(),
-                            player.getLocation().getBlockX(),
-                            player.getLocation().getBlockY(),
-                            player.getLocation().getBlockZ());
+                } catch (ClassNotFoundException e) {
+                    player.sendMessage(getMessage("General.GameDoesNotExsit"));
+                } catch (IllegalAccessException | InstantiationException e) {
+                    e.printStackTrace();
+                    player.sendMessage(getMessage("General.InternalError"));
                 }
                 break;
             case "join":
@@ -45,13 +53,22 @@ public class MinigameCommand implements CommandExecutor, TabCompleter {
             case "left":
                 MinigameManager.getInstance().left(player);
                 break;
+            case "debug":
+                Scoreboard newScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+                Objective objective = newScoreboard.registerNewObjective("SheepFreezy", "dummy", "");
+                objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+                objective.setDisplayName(ChatColor.RED + "YourScoreboardTitle");
+                Score score = objective.getScore(player.getName());
+                score.setScore(10);
+                player.setScoreboard(newScoreboard);
+                break;
         }
         return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-        String subcmds[] = {"start", "setup"};
+        String subcmds[] = {"start", "setup", "join"};
         List<String> returns = new ArrayList<>();
         if (strings.length == 1) {
             for (String subcmd : subcmds) {
@@ -63,4 +80,5 @@ public class MinigameCommand implements CommandExecutor, TabCompleter {
         }
         return null;
     }
+
 }

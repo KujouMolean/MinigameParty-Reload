@@ -41,7 +41,7 @@ public class GameInstance {
                 Bukkit.getServer().broadcastMessage(Utils.getMessage("General.TimeOutStopGame"));
                 Bukkit.getPluginManager().callEvent(new MinigameFinishEvent(minigame.getName()));
             }
-        }, 1200L);
+        }, 300L);
     }
 
     public void join(Player player) {
@@ -52,19 +52,23 @@ public class GameInstance {
         if (!playerList.contains(player)) {
             if (playerList.size() >= 8) {
                 player.sendMessage(Utils.getMessage("General.JoinFullGame"));
+                return;
             }
             playerList.add(player);
             player.sendMessage(Utils.getMessage("General.Join"));
             if (playerList.size() >= 4) {
-                Bukkit.getServer().broadcastMessage(Utils.getMessage("General.PlayerEnoughPreStart"));
-                broadcastTask.cancel();
-                timeoutTask.cancel();
-                gameStatus = GameStatus.PRE_START;
-                playerEnoughTask = Utils.runTaskLater(() -> {
-                    gameStatus = GameStatus.STARTED;
-                    minigame.init(playerList);
-                    minigame.start();
-                }, 200L);
+                if (playerEnoughTask == null) {
+                    Bukkit.getServer().broadcastMessage(Utils.getMessage("General.PlayerEnoughPreStart"));
+                    broadcastTask.cancel();
+                    timeoutTask.cancel();
+                    gameStatus = GameStatus.PRE_START;
+                    playerEnoughTask = Utils.runTaskLater(() -> {
+                        gameStatus = GameStatus.STARTED;
+                        minigame.init(playerList);
+                        minigame.start();
+                    }, 200L);
+                }
+
             }
         } else {
             player.sendMessage(Utils.getMessage("General.JoinJoinedGame"));
