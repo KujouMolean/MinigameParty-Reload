@@ -12,15 +12,15 @@ Rewrite a bunch of minigames.  No use of old code.
 
 * [ ] Dead End
 
-* [ ] Dis lntegration
+* [x] Dis lntegration
 
-* [ ] Jump Run
+* [x] Jump Run
 
-* [ ] Last Archer Standing
+* [x] Last Archer Standing
 
-* [ ] Mine Field
+* [x] Mine Field
 
-* [ ] Sheep Freezy
+* [x] Sheep Freezy
 
 * [ ] Slap Flight
 
